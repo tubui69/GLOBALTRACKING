@@ -8,7 +8,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #334155; overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
+        body { 
+          font-family: 'Inter', sans-serif; 
+          background-color: #f8fafc; 
+          color: #334155; 
+          overflow-x: hidden; 
+          -webkit-tap-highlight-color: transparent; 
+          /* Chặn bôi đen văn bản */
+          user-select: none;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+        }
         
         /* Custom Animations that aren't in default Tailwind */
         @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
@@ -36,6 +47,28 @@
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/"
   }
 }
+</script>
+<script>
+  // Script bảo vệ mã nguồn (Mã hóa hành vi người dùng)
+  
+  // 1. Chặn chuột phải
+  document.addEventListener('contextmenu', event => event.preventDefault());
+  
+  // 2. Chặn các phím tắt xem nguồn (F12, Ctrl+U, Ctrl+Shift+I/J/C)
+  document.onkeydown = function(e) {
+    // F12
+    if (e.keyCode == 123) { return false; }
+    // Ctrl+Shift+I (Inspect)
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; }
+    // Ctrl+Shift+C (Inspect Element)
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { return false; }
+    // Ctrl+Shift+J (Console)
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; }
+    // Ctrl+U (View Source)
+    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; }
+    // Ctrl+S (Save)
+    if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) { return false; }
+  }
 </script>
 </head>
   <body>
